@@ -90,7 +90,7 @@ export default {
 <style scoped>
 
 .bg-container {
-  background-image: url(C:\xampp\htdocs\vue-router\src\assets\windows-11-stock-official-colorful-3840x2160-5658.jpg); 
+  background-image: url(../assets/windows-11-stock-official-colorful-3840x2160-5658.jpg); 
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat;
