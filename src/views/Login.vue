@@ -39,31 +39,31 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      email: '',    // Campo de email
-      password: ''  // Campo de senha
+      email: '',    
+      password: ''  
     };
   },
   methods: {
-    // Redireciona para a página de cadastro
+   
     goToRegister() {
       this.$router.push('/cadastro');
     },
 
-    // Função de recuperação de senha
+    
     forgotPassword() {
       alert('Funcionalidade de recuperação de senha ainda não implementada.');
     },
 
-    // Função de login
+   
     async handleLogin() {
-      // Verifica se os campos estão preenchidos
+     
       if (!this.email || !this.password) {
         alert('Preencha todos os campos');
         return;
       }
 
       try {
-        // Faz a requisição POST para a API PHP
+     
         const response = await axios.post('http://localhost/controller/index.php', {
           action: 'login_usuario',
           email: this.email,
