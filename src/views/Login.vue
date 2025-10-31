@@ -37,53 +37,59 @@
 import axios from 'axios';
 
 export default {
+  name: 'Login',
   data() {
     return {
-      email: '',    
-      password: ''  
+      email: '',
+      password: ''
     };
   },
   methods: {
-   
+
     goToRegister() {
-      this.$router.push('/cadastro');
+      this.$router.push({ name: 'cadastro' });
     },
 
-    
     forgotPassword() {
       alert('Funcionalidade de recuperação de senha ainda não implementada.');
     },
 
-   
     async handleLogin() {
-     
       if (!this.email || !this.password) {
         alert('Preencha todos os campos');
         return;
       }
 
       try {
-     
         const response = await axios.post('http://localhost/controller/index.php', {
           action: 'login_usuario',
           email: this.email,
           senha: this.password
         });
 
-       
+        // Debug: verificar a resposta do backend
+        console.log('Resposta do backend:', response.data);
+
         if (response.data.success) {
-          localStorage.setItem('token', response.data.token);
+          const { token, nome } = response.data;
 
-        
-          localStorage.setItem('usuario_nome', response.data.nome);
+          if (!token || !nome) {
+            alert('Erro: token ou nome não retornados pelo servidor.');
+            return;
+          }
 
-          this.$router.push('/home');
+          // Salva token e nome no localStorage
+          localStorage.setItem('token', token);
+          localStorage.setItem('usuario_nome', nome);
+
+          // Redireciona para /home
+          this.$router.push({ name: 'home' });
+
         } else {
-          
-          alert(response.data.message);
+          alert(response.data.message || 'Erro ao logar.');
         }
+
       } catch (error) {
-       
         console.error('Erro ao tentar logar:', error);
         alert('Erro ao tentar logar. Verifique se o servidor está rodando.');
       }
