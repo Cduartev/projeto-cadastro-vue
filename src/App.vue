@@ -17,7 +17,7 @@ export default {
   computed: {
     mostrarNavbar() {
       
-      const rotasComNavbar = ['/home', '/listar', '/dashboard'];
+      const rotasComNavbar = ['/home', '/listar',];
       return rotasComNavbar.includes(this.$route.path);
     }
   }

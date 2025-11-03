@@ -89,7 +89,7 @@
             </div>
             <div>
               <button class="btn btn-success me-2" @click="salvarFamiliar">Salvar Familiar</button>
-              <button class="btn btn-secondary" @click="cancelarCadastroFamiliar">Cancelar</button>
+              <button class="btn btn-danger" @click="cancelarCadastroFamiliar">Fechar/Cancelar</button>
             </div>
           </div>
         </div>

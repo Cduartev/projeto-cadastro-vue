@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light navbar-container">
       <i class="bi bi-cpu fs-2 ms-3 text-light"></i>
-      <a class="navbar-brand ms-3" href="/home">Programas</a>
+      <a class="navbar-brand ms-3" href="/home">Sistema De Gerenciamento</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
