@@ -138,7 +138,7 @@ export default {
           this.usuarios = response.data;
         })
         .catch(error => {
-          console.error('Erro ao buscar dados:', error);
+          this.$toast.error('Erro ao buscar dados:', error);
         });
     },
 
@@ -156,7 +156,7 @@ export default {
     salvarEdicao() {
       const { nome, idade, profissao, id } = this.form;
       if (!nome || !idade || !profissao) {
-        alert("Preencha todos os campos.");
+        this.$toast.info("Preencha todos os campos.");
         return;
       }
 
@@ -173,11 +173,11 @@ export default {
             this.form = { nome: '', idade: '', profissao: '', id: null };
             this.editIndex = null;
           } else {
-            alert("Erro ao salvar edição.");
+            this.$toast.error("Erro ao salvar edição.");
           }
         })
         .catch(error => {
-          console.error("Erro ao salvar edição:", error);
+          this.$toast.error("Erro ao salvar edição:", error);
         });
     },
 
@@ -200,11 +200,11 @@ export default {
           if (response.data.success) {
             this.usuarios.splice(index, 1);
           } else {
-            alert("Erro ao excluir usuário.");
+            this.$toast.error("Erro ao excluir usuário.");
           }
         })
         .catch(error => {
-          console.error("Erro ao excluir usuário:", error);
+          this.$toast.error("Erro ao excluir usuário:", error);
         });
     },
 
@@ -219,11 +219,11 @@ export default {
           if (response.data.success) {
             this.familiares = response.data.familiares;
           } else {
-            alert("Erro ao buscar familiares.");
+            this.$toast.error("Erro ao buscar familiares.");
           }
         })
         .catch(error => {
-          console.error("Erro ao buscar familiares:", error);
+          this.$toast.error("Erro ao buscar familiares:", error);
         });
     },
 
@@ -231,7 +231,7 @@ export default {
       const { nome, idade, parentesco } = this.familiaForm;
 
       if (!nome || !idade || !parentesco) {
-        alert("Preencha todos os campos do familiar.");
+        this.$toast.info("Preencha todos os campos do familiar.");
         return;
       }
 
@@ -247,11 +247,11 @@ export default {
             this.familiaForm = { nome: '', idade: '', parentesco: '' };
             this.ver_familia(this.idUsuarioSelecionado);
           } else {
-            alert("Erro ao salvar familiar.");
+            this.$toast.error("Erro ao salvar familiar.");
           }
         })
         .catch(error => {
-          console.error("Erro ao salvar familiar:", error);
+          this.$toast.error("Erro ao salvar familiar:", error);
         });
     },
 
