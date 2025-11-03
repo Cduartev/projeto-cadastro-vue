@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 
@@ -51,52 +50,58 @@ export default {
     },
 
     forgotPassword() {
-      alert('Funcionalidade de recuperação de senha ainda não implementada.');
+      
+      this.$toast.info('Funcionalidade de recuperação de senha ainda não implementada.');
     },
 
     async handleLogin() {
       if (!this.email || !this.password) {
-        alert('Preencha todos os campos');
+        
+        this.$toast.warning('Preencha todos os campos');
         return;
       }
 
       try {
-        const response = await axios.post('http://localhost/controller/index.php', {
+        const response = await axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
           action: 'login_usuario',
           email: this.email,
           senha: this.password
         });
 
-        // Debug: verificar a resposta do backend
+        
         console.log('Resposta do backend:', response.data);
 
         if (response.data.success) {
           const { token, nome } = response.data;
 
           if (!token || !nome) {
-            alert('Erro: token ou nome não retornados pelo servidor.');
+            this.$toast.error('Erro: token ou nome não retornados pelo servidor.');
             return;
           }
 
-          // Salva token e nome no localStorage
+          
           localStorage.setItem('token', token);
           localStorage.setItem('usuario_nome', nome);
 
-          // Redireciona para /home
+          
           this.$router.push({ name: 'home' });
 
+         
+          this.$toast.success(`Bem-vindo, ${nome}!`);
+
         } else {
-          alert(response.data.message || 'Erro ao logar.');
+          this.$toast.error(response.data.message || 'Erro ao logar.');
         }
 
       } catch (error) {
         console.error('Erro ao tentar logar:', error);
-        alert('Erro ao tentar logar. Verifique se o servidor está rodando.');
+        this.$toast.error('Erro ao tentar logar. Verifique se o servidor está rodando.');
       }
     }
   }
 };
 </script>
+
 
 <style scoped>
 .bg-container {

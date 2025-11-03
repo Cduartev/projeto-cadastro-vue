@@ -60,7 +60,7 @@ export default {
   methods: {
     async handleRegister() {
       try {
-        const res = await axios.post('http://localhost/controller/index.php', {
+        const res = await axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
           action: 'cadastrar_usuario',
           nome: this.user,
           email: this.email,
@@ -68,16 +68,16 @@ export default {
         });
 
         if (res.data.success) {
-          alert(res.data.message);
+          this.$toast.success(res.data.message);
           this.user = '';
           this.email = '';
           this.password = '';
         } else {
-          alert(res.data.message);
+          this.$toast.success(res.data.message);
         }
       } catch (err) {
-        console.error(err);
-        alert('Erro ao cadastrar usuário');
+        this.$toast.error(err);
+        this.$toast.error('Erro ao cadastrar usuário');
       }
     },
     goToLogin() {

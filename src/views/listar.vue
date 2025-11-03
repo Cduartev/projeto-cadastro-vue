@@ -131,7 +131,7 @@ export default {
 
   methods: {
     getPessoas() {
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'listar'
       })
         .then(response => {
@@ -160,7 +160,7 @@ export default {
         return;
       }
 
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'editar',
         id,
         nome,
@@ -192,7 +192,7 @@ export default {
         return;
       }
 
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'excluir',
         id: usuario.id
       })
@@ -211,7 +211,7 @@ export default {
     ver_familia(id) {
       this.idUsuarioSelecionado = id;
 
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'listar_familiares',
         id_pessoa: id
       })
@@ -235,7 +235,7 @@ export default {
         return;
       }
 
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'cadastrar_familiar',
         id_pessoa: this.idUsuarioSelecionado,
         nome,

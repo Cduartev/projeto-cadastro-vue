@@ -54,14 +54,14 @@ export default {
   },
   methods: {
     getPessoas() {
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'listar'
       })
         .then(response => {
           this.usuarios = response.data;
         })
         .catch(error => {
-          console.error('Erro ao buscar usuários:', error);
+          this.$toast.error('Erro ao buscar usuários:', error);
         });
     },
 
@@ -69,16 +69,16 @@ export default {
       const { nome, idade, profissao } = this.form;
 
       if (!nome || !idade || !profissao) {
-        alert("Preencha todos os campos.");
+        this.$toast.error("Preencha todos os campos.");
         return;
       }
 
       if (idade <= 0) {
-        alert("A idade não pode ser menor que 0");
+        this.$toast.error("A idade não pode ser menor que 0");
         return;
       }
 
-      axios.post('http://localhost/controller/index.php', {
+      axios.post('http://localhost/projeto-cadastro-vue/controller/index.php', {
         action: 'cadastrar',
         nome,
         idade,
@@ -86,7 +86,7 @@ export default {
       })
         .then(response => {
           if (response.data.message) {
-            alert(response.data.message);
+            this.$toast.success(response.data.message);
             this.getPessoas();
             this.form.nome = "";
             this.form.idade = "";
@@ -94,8 +94,8 @@ export default {
           }
         })
         .catch(error => {
-          console.error('Erro ao cadastrar pessoa:', error);
-          alert("Erro ao cadastrar pessoa.");
+          this.$toast.error('Erro ao cadastrar pessoa:', error);
+          this.$toast.error("Erro ao cadastrar pessoa.");
         });
     },
 
