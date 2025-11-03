@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 
 
 Vue.use(Toast, {
-    position: POSITION.TOP_RIGHT,
+    position: POSITION.TOP_LEFT,
     timeout: 3000,
     closeOnClick: true,
     pauseOnFocusLoss: true,
